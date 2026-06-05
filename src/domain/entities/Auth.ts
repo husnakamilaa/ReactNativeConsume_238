@@ -4,4 +4,9 @@ export interface User {
   email?: string;
 }
 
+export interface LoginResponse {
+  message: string;
+  token: string;
+  user: User;
+}
 
