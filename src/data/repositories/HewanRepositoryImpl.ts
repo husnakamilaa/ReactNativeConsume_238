@@ -29,5 +29,10 @@ export class HewanRepositoryImpl implements IHewanRepository {
     return response.data;
   }
 
-  
+  async delete(id: number): Promise<APIResponse<{ message: string }>> {
+    const response = await apiClient.delete<APIResponse<{ message: string }>>(
+      `/hewan/${id}`,
+    );
+    return response.data;
+  }
 }
