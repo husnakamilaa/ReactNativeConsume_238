@@ -1,5 +1,5 @@
 import { LoginResponse, RegisterResponse } from "../../domain/entities/Auth";
-import { IAuthRepository } from "../../domain/repositories/IAuthRepository";
+import { IAuthRepository } from "../../domain/repositories/";
 import apiClient from "../api/apiClient";
 
 export class AuthRepositoryImpl implements IAuthRepository {
