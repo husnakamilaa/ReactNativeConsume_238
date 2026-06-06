@@ -37,6 +37,10 @@ export const useHewanViewModel = () => {
         }
     };
 
+    const updateHewan = async (id: number, payload: Partial<Hewan>, onSuccess: () => void) => {
+        
+    };
+
     const deleteHewan = async (id: number) => {
         try{
             const res = await hewanRepo.delete(id);
