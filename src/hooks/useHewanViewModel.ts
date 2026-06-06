@@ -62,5 +62,5 @@ export const useHewanViewModel = () => {
             setError(err.response?.data?.message || 'Gagal menghapus hewan'); 
         } 
     };
-    return { hewanList, loading, error, fetchHewan, addHewan, deleteHewan };
+    return { hewanList, loading, error, fetchHewan, addHewan, updateHewan, deleteHewan };
 };
