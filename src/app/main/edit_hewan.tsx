@@ -26,4 +26,13 @@ export default function EditHewanScreen() {
     status: HewanStatus;
   }>();
 
+  const [nama, setNama] = useState(namaParam ?? "");
+  const [jenis, setJenis] = useState(jenisParam ?? "");
+  const [harga, setHarga] = useState(hargaParam ?? "");
+  const [tanggalLahir, setTanggalLahir] = useState(
+    tanggal_lahir ? new Date(tanggal_lahir) : new Date()
+  );
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [status, setStatus] = useState<HewanStatus>(statusParam ?? "tersedia");
+
 }
