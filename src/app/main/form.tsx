@@ -202,4 +202,32 @@ const styles = StyleSheet.create({
   },
   submitButtonText: { color: "#ffffff", fontSize: 16, fontWeight: "bold" },
   errorText: { color: "#ef4444", textAlign: "center", fontWeight: "600" },
+  labelText: {
+    fontSize: 14,
+    color: "#64748b",
+    marginBottom: -8,
+  },
+  segmentContainer: {
+    flexDirection: "row",
+    borderWidth: 1,
+    borderColor: "#cbd5e1",
+    borderRadius: 12,
+    overflow: "hidden",
+  },
+  segmentButton: {
+    flex: 1,
+    paddingVertical: 14,
+    alignItems: "center",
+    backgroundColor: "#f8fafc",
+  },
+  segmentButtonActive: {
+    backgroundColor: "#0284c7",
+  },
+  segmentText: {
+    fontSize: 16,
+  },
+  segmentTextActive: {
+    color: "#ffffff",
+    fontWeight: "bold",
+  },
 });
