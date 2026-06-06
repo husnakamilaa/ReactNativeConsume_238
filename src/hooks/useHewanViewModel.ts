@@ -45,6 +45,8 @@ export const useHewanViewModel = () => {
                 await fetchHewan();
                 onSuccess();
             }
+        }catch (err: any) {
+            setError(err.response?.data?.message || 'Gagal mengupdate hewan'); 
         }
     };
 
