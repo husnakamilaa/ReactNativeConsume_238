@@ -4,6 +4,7 @@ import { useHewanViewModel } from "@/hooks/useHewanViewModel";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useRouter } from "expo-router";
 import { useState } from "react";
+import { HEWAN_STATUS_OPTIONS, HewanStatus } from "@/domain/entities/Hewan";
 import {
     ActivityIndicator,
     Alert,
@@ -11,6 +12,7 @@ import {
     StyleSheet,
     TextInput,
     TouchableOpacity,
+    View, 
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -20,6 +22,7 @@ export default function AddHewanScreen() {
   const [harga, setHarga] = useState("");
   const [tanggalLahir, setTanggalLahir] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const [status, setStatus] = useState<HewanStatus>("tersedia");
 
   const { addHewan, loading, error } = useHewanViewModel();
   const router = useRouter();
@@ -64,7 +67,7 @@ export default function AddHewanScreen() {
         jenis: cleanJenis,
         harga: numericHarga,
         tanggal_lahir: formatDateString(tanggalLahir),
-        status: "tersedia",
+        status,
       },
       () => {
         router.back();
