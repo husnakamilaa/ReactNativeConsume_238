@@ -38,7 +38,7 @@ export const useHewanViewModel = () => {
     };
 
     const updateHewan = async (id: number, payload: Partial<Hewan>, onSuccess: () => void) => {
-        
+        setLoading(true);
     };
 
     const deleteHewan = async (id: number) => {
