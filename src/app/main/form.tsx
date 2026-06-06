@@ -1,18 +1,18 @@
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
+import { HEWAN_STATUS_OPTIONS, HewanStatus } from "@/domain/entities/Hewan";
 import { useHewanViewModel } from "@/hooks/useHewanViewModel";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { HEWAN_STATUS_OPTIONS, HewanStatus } from "@/domain/entities/Hewan";
 import {
-    ActivityIndicator,
-    Alert,
-    Platform,
-    StyleSheet,
-    TextInput,
-    TouchableOpacity,
-    View, 
+  ActivityIndicator,
+  Alert,
+  Platform,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -126,6 +126,29 @@ export default function AddHewanScreen() {
               maximumDate={new Date()}
             />
           )}
+          <ThemedText style={styles.labelText}>Status</ThemedText>
+          <View style={styles.segmentContainer}>
+            {HEWAN_STATUS_OPTIONS.map((opt) => (
+              <TouchableOpacity
+                key={opt.value}
+                style={[
+                  styles.segmentButton,
+                  status === opt.value && styles.segmentButtonActive,
+                ]}
+                onPress={() => setStatus(opt.value)}
+                activeOpacity={0.7}
+              >
+                <ThemedText
+                  style={[
+                    styles.segmentText,
+                    status === opt.value && styles.segmentTextActive,
+                  ]}
+                >
+                  {opt.label}
+                </ThemedText>
+              </TouchableOpacity>
+            ))}
+          </View>
           <TouchableOpacity
             style={styles.submitButton}
             onPress={onSubmit}
