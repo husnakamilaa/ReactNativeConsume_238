@@ -1,10 +1,17 @@
+export type HewanStatus = 'tersedia' | 'terjual';
+
+export const HEWAN_STATUS_OPTIONS: { label: string; value: HewanStatus }[] = [
+  { label: 'Tersedia', value: 'tersedia' },
+  { label: 'Terjual', value: 'terjual' },
+];
+
 export interface Hewan {
   id?: number;
   nama: string;
   jenis: string;
   tanggal_lahir?: string;
   harga: number;
-  status?: 'tersedia' | 'terjual';
+  status?: HewanStatus;
   createdAt?: string;
   updatedAt?: string;
 }
