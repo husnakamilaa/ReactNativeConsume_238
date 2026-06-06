@@ -42,7 +42,7 @@ export default function EditHewanScreen() {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [status, setStatus] = useState<HewanStatus>(statusParam ?? "tersedia");
 
-  const { updateHewan, loading, error } = useHewanViewModel;
+  const { updateHewan, loading, error } = useHewanViewModel();
   const router = useRouter();
 
   const formatDateString = (date: Date) => {
