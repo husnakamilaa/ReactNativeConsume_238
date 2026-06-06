@@ -2,15 +2,15 @@ import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { useHewanViewModel } from "@/hooks/useHewanViewModel";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { useState } from "react";
 import {
-    ActivityIndicator,
-    Alert,
-    Platform,
-    StyleSheet,
-    TextInput,
-    TouchableOpacity,
+  ActivityIndicator,
+  Alert,
+  Platform,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -73,72 +73,79 @@ export default function AddHewanScreen() {
   };
 
   return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.header}>
-          <ThemedText type="title">Tambah Ternak Baru</ThemedText>
-        </ThemedView>
-        <ThemedView style={styles.form}>
-          {error && <ThemedText style={styles.errorText}>{error}</ThemedText>}
-          <TextInput
-            style={styles.input}
-            placeholder="Nama hewan"
-            placeholderTextColor="#94a3b8"
-            value={nama}
-            onChangeText={setNama}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Jenis (contoh: Sapi Limosin)"
-            placeholderTextColor="#94a3b8"
-            value={jenis}
-            onChangeText={setJenis}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Harga (Rupiah)"
-            placeholderTextColor="#94a3b8"
-            keyboardType="number-pad"
-            value={harga}
-            onChangeText={(text) => {
-              setHarga(text.replace(/[^0-9]/g, ""));
-            }}
-          />
-          <TouchableOpacity
-            style={styles.dateInputButton}
-            onPress={() => setShowDatePicker(true)}
-            activeOpacity={0.7}
-          >
-            <ThemedText style={styles.dateText}>
-              Tanggal Lahir: {formatDateString(tanggalLahir)}
-            </ThemedText>
-          </TouchableOpacity>
-
-          {showDatePicker && (
-            <DateTimePicker
-              value={tanggalLahir}
-              mode="date"
-              display={Platform.OS === "ios" ? "spinner" : "default"}
-              onValueChange={onChangeDate}
-              maximumDate={new Date()}
+    <>
+      <Stack.Screen
+        options={{
+          title: "Tambah Ternak",
+        }}
+      />
+      <ThemedView style={styles.container}>
+        <SafeAreaView style={styles.safeArea}>
+          <ThemedView style={styles.header}>
+            <ThemedText type="title">Tambah Ternak Baru</ThemedText>
+          </ThemedView>
+          <ThemedView style={styles.form}>
+            {error && <ThemedText style={styles.errorText}>{error}</ThemedText>}
+            <TextInput
+              style={styles.input}
+              placeholder="Nama hewan"
+              placeholderTextColor="#94a3b8"
+              value={nama}
+              onChangeText={setNama}
             />
-          )}
-          <TouchableOpacity
-            style={styles.submitButton}
-            onPress={onSubmit}
-            disabled={loading}
-          >
-            {loading ? (
-              <ActivityIndicator color="#fff" />
-            ) : (
-              <ThemedText style={styles.submitButtonText}>
-                Simpan ke Database
+            <TextInput
+              style={styles.input}
+              placeholder="Jenis (contoh: Sapi Limosin)"
+              placeholderTextColor="#94a3b8"
+              value={jenis}
+              onChangeText={setJenis}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Harga (Rupiah)"
+              placeholderTextColor="#94a3b8"
+              keyboardType="number-pad"
+              value={harga}
+              onChangeText={(text) => {
+                setHarga(text.replace(/[^0-9]/g, ""));
+              }}
+            />
+            <TouchableOpacity
+              style={styles.dateInputButton}
+              onPress={() => setShowDatePicker(true)}
+              activeOpacity={0.7}
+            >
+              <ThemedText style={styles.dateText}>
+                Tanggal Lahir: {formatDateString(tanggalLahir)}
               </ThemedText>
+            </TouchableOpacity>
+
+            {showDatePicker && (
+              <DateTimePicker
+                value={tanggalLahir}
+                mode="date"
+                display={Platform.OS === "ios" ? "spinner" : "default"}
+                onValueChange={onChangeDate}
+                maximumDate={new Date()}
+              />
             )}
-          </TouchableOpacity>
-        </ThemedView>
-      </SafeAreaView>
-    </ThemedView>
+            <TouchableOpacity
+              style={styles.submitButton}
+              onPress={onSubmit}
+              disabled={loading}
+            >
+              {loading ? (
+                <ActivityIndicator color="#fff" />
+              ) : (
+                <ThemedText style={styles.submitButtonText}>
+                  Simpan ke Database
+                </ThemedText>
+              )}
+            </TouchableOpacity>
+          </ThemedView>
+        </SafeAreaView>
+      </ThemedView>
+    </>
   );
 }
 
