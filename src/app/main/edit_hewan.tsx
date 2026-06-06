@@ -177,3 +177,66 @@ export default function EditHewanScreen() {
       </ThemedView>
     );
 }
+const styles = StyleSheet.create({
+  container: { flex: 1 },
+  safeArea: { flex: 1, paddingHorizontal: 24 },
+  header: { marginVertical: 24 },
+  form: { gap: 16 },
+  input: {
+    backgroundColor: "#f8fafc",
+    borderWidth: 1,
+    borderColor: "#cbd5e1",
+    borderRadius: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    fontSize: 16,
+    color: "#0f172a",
+  },
+  dateInputButton: {
+    backgroundColor: "#f8fafc",
+    borderWidth: 1,
+    borderColor: "#cbd5e1",
+    borderRadius: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    justifyContent: "center",
+  },
+  dateText: { fontSize: 16, color: "#334155" },
+  submitButton: {
+    backgroundColor: "#0284c7",
+    paddingVertical: 16,
+    borderRadius: 12,
+    alignItems: "center",
+    marginTop: 12,
+  },
+  submitButtonText: { color: "#ffffff", fontSize: 16, fontWeight: "bold" },
+  errorText: { color: "#ef4444", textAlign: "center", fontWeight: "600" },
+  labelText: {
+    fontSize: 14,
+    color: "#64748b",
+    marginBottom: -8,
+  },
+  segmentContainer: {
+    flexDirection: "row",
+    borderWidth: 1,
+    borderColor: "#cbd5e1",
+    borderRadius: 12,
+    overflow: "hidden",
+  },
+  segmentButton: {
+    flex: 1,
+    paddingVertical: 14,
+    alignItems: "center",
+    backgroundColor: "#f8fafc",
+  },
+  segmentButtonActive: {
+    backgroundColor: "#0284c7",
+  },
+  segmentText: {
+    fontSize: 16,
+  },
+  segmentTextActive: {
+    color: "#ffffff",
+    fontWeight: "bold",
+  },
+});
