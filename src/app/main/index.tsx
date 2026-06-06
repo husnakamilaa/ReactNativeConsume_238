@@ -238,4 +238,22 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.four,
     borderRadius: Spacing.four,
   },
+  cardActions: {
+  flexDirection: 'row',
+  gap: 8,
+  alignItems: 'center',
+},
+editButton: {
+  backgroundColor: '#eff6ff',
+  borderWidth: 1,
+  borderColor: '#bfdbfe',
+  paddingHorizontal: 12,
+  paddingVertical: 8,
+  borderRadius: 10,
+},
+editButtonText: {
+  color: '#0284c7',
+  fontWeight: '600',
+  fontSize: 13,
+},
 });
