@@ -3,7 +3,7 @@ import { ThemedView } from "@/components/themed-view";
 import { HEWAN_STATUS_OPTIONS, HewanStatus } from "@/domain/entities/Hewan";
 import { useHewanViewModel } from "@/hooks/useHewanViewModel";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { useState } from "react";
 import {
   ActivityIndicator,
@@ -76,6 +76,12 @@ export default function AddHewanScreen() {
   };
 
   return (
+    <>
+      <Stack.Screen
+        options={{
+          title: "Tambah Ternak",
+        }}
+      />
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
         <ThemedView style={styles.header}>
@@ -165,6 +171,7 @@ export default function AddHewanScreen() {
         </ThemedView>
       </SafeAreaView>
     </ThemedView>
+    </>
   );
 }
 
