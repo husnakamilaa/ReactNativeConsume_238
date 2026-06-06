@@ -79,7 +79,7 @@ export default function DashboardScreen() {
       <TouchableOpacity
         style={styles.editButton}
         onPress={() => router.push({
-          pathname: '/main/edit',
+          pathname: '/main/edit_hewan',
           params: {
             id: String(item.id),
             nama: item.nama,
