@@ -75,11 +75,31 @@ export default function DashboardScreen() {
               </ThemedText>
               <ThemedText style ={styles.animalPrice}> Rp{item.harga.toLocaleString('id-ID')}</ThemedText>
             </ThemedView>
-            <TouchableOpacity style= {styles.deleteButton}
-              onPress={()=> confirmDelete(item.id!, item.nama)}
-            >
-              <ThemedText style= {styles.deleteButtonText}>Hapus</ThemedText>
-            </TouchableOpacity>
+            <ThemedView style={styles.cardActions}>
+      <TouchableOpacity
+        style={styles.editButton}
+        onPress={() => router.push({
+          pathname: '/main/edit',
+          params: {
+            id: String(item.id),
+            nama: item.nama,
+            jenis: item.jenis,
+            harga: String(item.harga),
+            tanggal_lahir: item.tanggal_lahir ?? '',
+            status: item.status ?? 'tersedia',
+          }
+        })}
+      >
+        <ThemedText style={styles.editButtonText}>Edit</ThemedText>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.deleteButton}
+        onPress={() => confirmDelete(item.id!, item.nama)}
+      >
+        <ThemedText style={styles.deleteButtonText}>Hapus</ThemedText>
+      </TouchableOpacity>
+    </ThemedView>
           </ThemedView>
         )}
       />
