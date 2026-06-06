@@ -85,4 +85,95 @@ export default function EditHewanScreen() {
       },
     );
   };
+  return (
+      <ThemedView style={styles.container}>
+        <SafeAreaView style={styles.safeArea}>
+          <ThemedView style={styles.header}>
+            <ThemedText type="title">Edit Ternak</ThemedText>
+          </ThemedView>
+          <ThemedView style={styles.form}>
+            {error && <ThemedText style={styles.errorText}>{error}</ThemedText>}
+            <TextInput
+              style={styles.input}
+              placeholder="Nama hewan"
+              placeholderTextColor="#94a3b8"
+              value={nama}
+              onChangeText={setNama}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Jenis (contoh: Sapi Limosin)"
+              placeholderTextColor="#94a3b8"
+              value={jenis}
+              onChangeText={setJenis}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Harga (Rupiah)"
+              placeholderTextColor="#94a3b8"
+              keyboardType="number-pad"
+              value={harga}
+              onChangeText={(text) => {
+                setHarga(text.replace(/[^0-9]/g, ""));
+              }}
+            />
+            <TouchableOpacity
+              style={styles.dateInputButton}
+              onPress={() => setShowDatePicker(true)}
+              activeOpacity={0.7}
+            >
+              <ThemedText style={styles.dateText}>
+                Tanggal Lahir: {formatDateString(tanggalLahir)}
+              </ThemedText>
+            </TouchableOpacity>
+  
+            {showDatePicker && (
+              <DateTimePicker
+                value={tanggalLahir}
+                mode="date"
+                display={Platform.OS === "ios" ? "spinner" : "default"}
+                onValueChange={onChangeDate}
+                maximumDate={new Date()}
+              />
+            )}
+            <ThemedText style={styles.labelText}>Status</ThemedText>
+            <View style={styles.segmentContainer}>
+              {HEWAN_STATUS_OPTIONS.map((opt) => (
+                <TouchableOpacity
+                  key={opt.value}
+                  style={[
+                    styles.segmentButton,
+                    status === opt.value && styles.segmentButtonActive,
+                  ]}
+                  onPress={() => setStatus(opt.value)}
+                  activeOpacity={0.7}
+                >
+                  <ThemedText
+                    style={[
+                      styles.segmentText,
+                      status === opt.value && styles.segmentTextActive,
+                    ]}
+                  >
+                    {opt.label}
+                  </ThemedText>
+                </TouchableOpacity>
+              ))}
+            </View>
+            <TouchableOpacity
+              style={styles.submitButton}
+              onPress={onSubmit}
+              disabled={loading}
+            >
+              {loading ? (
+                <ActivityIndicator color="#fff" />
+              ) : (
+                <ThemedText style={styles.submitButtonText}>
+                  Simpan Perubahan
+                </ThemedText>
+              )}
+            </TouchableOpacity>
+          </ThemedView>
+        </SafeAreaView>
+      </ThemedView>
+    );
 }
