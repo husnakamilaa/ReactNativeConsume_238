@@ -47,6 +47,8 @@ export const useHewanViewModel = () => {
             }
         }catch (err: any) {
             setError(err.response?.data?.message || 'Gagal mengupdate hewan'); 
+        }finally {
+            setLoading(false);
         }
     };
 
