@@ -1,4 +1,4 @@
-import { Slot, useRouter, useSegments } from "expo-router";
+import { Stack, useRouter, useSegments } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, View } from "react-native";
@@ -30,5 +30,13 @@ export default function RootLayout() {
       </View>
     );
   }
-  return <Slot />;
+   return (
+    <Stack>
+      
+      <Stack.Screen
+        name="main"
+        options={{ headerShown: false }}
+      />
+    </Stack>
+  );
 }
