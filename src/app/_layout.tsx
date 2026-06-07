@@ -15,7 +15,7 @@ export default function RootLayout() {
       const inAuthGroup = !segments[0] || segments[0] === "auth";
 
       if (!token && !inAuthGroup) {
-        router.replace("/auth/register");
+        router.replace("/");
       } else if (token && inAuthGroup) {
         router.replace("/main");
       }
