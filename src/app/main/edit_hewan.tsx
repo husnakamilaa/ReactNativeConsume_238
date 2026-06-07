@@ -5,6 +5,7 @@ import { useHewanViewModel } from "@/hooks/useHewanViewModel";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useLocalSearchParams, useRouter, Stack } from "expo-router";
 import { useState } from "react";
+import RNPickerSelect from "react-native-picker-select";
 import {
     ActivityIndicator,
     Alert,
@@ -98,7 +99,7 @@ export default function EditHewanScreen() {
     <>
       <Stack.Screen
         options={{
-          title: "Edit Ternak",
+          title: "",
         }}
       />
     <ThemedView style={styles.container}>
@@ -152,28 +153,20 @@ export default function EditHewanScreen() {
             />
           )}
           <ThemedText style={styles.labelText}>Status</ThemedText>
-          <View style={styles.segmentContainer}>
-            {HEWAN_STATUS_OPTIONS.map((opt) => (
-              <TouchableOpacity
-                key={opt.value}
-                style={[
-                  styles.segmentButton,
-                  status === opt.value && styles.segmentButtonActive,
-                ]}
-                onPress={() => setStatus(opt.value)}
-                activeOpacity={0.7}
-              >
-                <ThemedText
-                  style={[
-                    styles.segmentText,
-                    status === opt.value && styles.segmentTextActive,
-                  ]}
-                >
-                  {opt.label}
-                </ThemedText>
-              </TouchableOpacity>
-            ))}
-          </View>
+
+            <RNPickerSelect
+              style={{inputAndroid: styles.inputAndroid}}
+              value={status}
+              onValueChange={(value) => setStatus(value)}
+              items={HEWAN_STATUS_OPTIONS.map((opt) => ({
+                label: opt.label,
+                value: opt.value,
+              }))}
+              placeholder={{
+                label: "Pilih Status",
+                value: null,
+              }}
+            />
           <TouchableOpacity
             style={styles.submitButton}
             onPress={onSubmit}
@@ -254,5 +247,15 @@ const styles = StyleSheet.create({
   segmentTextActive: {
     color: "#ffffff",
     fontWeight: "bold",
+  },
+  inputAndroid: {
+    backgroundColor: "#f8fafc",
+    borderWidth: 1,
+    borderColor: "#cbd5e1",
+    borderRadius: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    fontSize: 16,
+    color: "#0f172a", 
   },
 });
