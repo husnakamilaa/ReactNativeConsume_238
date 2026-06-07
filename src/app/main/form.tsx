@@ -11,9 +11,9 @@ import {
   Platform,
   StyleSheet,
   TextInput,
-  TouchableOpacity,
-  View,
+  TouchableOpacity
 } from "react-native";
+import RNPickerSelect from "react-native-picker-select";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function AddHewanScreen() {
@@ -79,98 +79,90 @@ export default function AddHewanScreen() {
     <>
       <Stack.Screen
         options={{
-          title: "Tambah Ternak",
+          title: "",
         }}
       />
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.header}>
-          <ThemedText type="title">Tambah Ternak Baru</ThemedText>
-        </ThemedView>
-        <ThemedView style={styles.form}>
-          {error && <ThemedText style={styles.errorText}>{error}</ThemedText>}
-          <TextInput
-            style={styles.input}
-            placeholder="Nama hewan"
-            placeholderTextColor="#94a3b8"
-            value={nama}
-            onChangeText={setNama}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Jenis (contoh: Sapi Limosin)"
-            placeholderTextColor="#94a3b8"
-            value={jenis}
-            onChangeText={setJenis}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Harga (Rupiah)"
-            placeholderTextColor="#94a3b8"
-            keyboardType="number-pad"
-            value={harga}
-            onChangeText={(text) => {
-              setHarga(text.replace(/[^0-9]/g, ""));
-            }}
-          />
-          <TouchableOpacity
-            style={styles.dateInputButton}
-            onPress={() => setShowDatePicker(true)}
-            activeOpacity={0.7}
-          >
-            <ThemedText style={styles.dateText}>
-              Tanggal Lahir: {formatDateString(tanggalLahir)}
-            </ThemedText>
-          </TouchableOpacity>
-
-          {showDatePicker && (
-            <DateTimePicker
-              value={tanggalLahir}
-              mode="date"
-              display={Platform.OS === "ios" ? "spinner" : "default"}
-              onValueChange={onChangeDate}
-              maximumDate={new Date()}
+      <ThemedView style={styles.container}>
+        <SafeAreaView style={styles.safeArea}>
+          <ThemedView style={styles.header}>
+            <ThemedText type="title">Tambah Ternak Baru</ThemedText>
+          </ThemedView>
+          <ThemedView style={styles.form}>
+            {error && <ThemedText style={styles.errorText}>{error}</ThemedText>}
+            <TextInput
+              style={styles.input}
+              placeholder="Nama hewan"
+              placeholderTextColor="#94a3b8"
+              value={nama}
+              onChangeText={setNama}
             />
-          )}
-          <ThemedText style={styles.labelText}>Status</ThemedText>
-          <View style={styles.segmentContainer}>
-            {HEWAN_STATUS_OPTIONS.map((opt) => (
-              <TouchableOpacity
-                key={opt.value}
-                style={[
-                  styles.segmentButton,
-                  status === opt.value && styles.segmentButtonActive,
-                ]}
-                onPress={() => setStatus(opt.value)}
-                activeOpacity={0.7}
-              >
-                <ThemedText
-                  style={[
-                    styles.segmentText,
-                    status === opt.value && styles.segmentTextActive,
-                  ]}
-                >
-                  {opt.label}
-                </ThemedText>
-              </TouchableOpacity>
-            ))}
-          </View>
-          <TouchableOpacity
-            style={styles.submitButton}
-            onPress={onSubmit}
-            disabled={loading}
-          >
-            {loading ? (
-              <ActivityIndicator color="#fff" />
-            ) : (
-              <ThemedText style={styles.submitButtonText}>
-                Simpan ke Database
+            <TextInput
+              style={styles.input}
+              placeholder="Jenis (contoh: Sapi Limosin)"
+              placeholderTextColor="#94a3b8"
+              value={jenis}
+              onChangeText={setJenis}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Harga (Rupiah)"
+              placeholderTextColor="#94a3b8"
+              keyboardType="number-pad"
+              value={harga}
+              onChangeText={(text) => {
+                setHarga(text.replace(/[^0-9]/g, ""));
+              }}
+            />
+            <TouchableOpacity
+              style={styles.dateInputButton}
+              onPress={() => setShowDatePicker(true)}
+              activeOpacity={0.7}
+            >
+              <ThemedText style={styles.dateText}>
+                Tanggal Lahir: {formatDateString(tanggalLahir)}
               </ThemedText>
+            </TouchableOpacity>
+
+            {showDatePicker && (
+              <DateTimePicker
+                value={tanggalLahir}
+                mode="date"
+                display={Platform.OS === "ios" ? "spinner" : "default"}
+                onValueChange={onChangeDate}
+                maximumDate={new Date()}
+              />
             )}
-          </TouchableOpacity>
-        </ThemedView>
-      </SafeAreaView>
-    </ThemedView>
+            <ThemedText style={styles.labelText}>Status</ThemedText>
+
+            <RNPickerSelect
+              style={{inputAndroid: styles.inputAndroid}}
+              value={status}
+              onValueChange={(value) => setStatus(value)}
+              items={HEWAN_STATUS_OPTIONS.map((opt) => ({
+                label: opt.label,
+                value: opt.value,
+              }))}
+              placeholder={{
+                label: "Pilih Status",
+                value: null,
+              }}
+            />
+            <TouchableOpacity
+              style={styles.submitButton}
+              onPress={onSubmit}
+              disabled={loading}
+            >
+              {loading ? (
+                <ActivityIndicator color="#fff" />
+              ) : (
+                <ThemedText style={styles.submitButtonText}>
+                  Simpan ke Database
+                </ThemedText>
+              )}
+            </TouchableOpacity>
+          </ThemedView>
+        </SafeAreaView>
+      </ThemedView>
     </>
   );
 }
@@ -236,5 +228,15 @@ const styles = StyleSheet.create({
   segmentTextActive: {
     color: "#ffffff",
     fontWeight: "bold",
+  },
+  inputAndroid: {
+    backgroundColor: "#f8fafc",
+    borderWidth: 1,
+    borderColor: "#cbd5e1",
+    borderRadius: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    fontSize: 16,
+    color: "#0f172a", 
   },
 });
